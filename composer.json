@@ -1,0 +1,24 @@
+{
+    "name": "hushulin/we7utils",
+    "description": "we7 tools package.",
+    "keywords": ["we7utils", "tools", "ioc", "di"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Eric Hu",
+            "email": "hushulin12321@126.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "pimple/pimple": "^3.0",
+        "container-interop/container-interop": "^1.1",
+        "illuminate/database": "~5.1",
+        "illuminate/encryption": "^5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bow\\": "bow/"
+        }
+    }
+}
