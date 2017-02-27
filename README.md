@@ -13,6 +13,6 @@ An utils for we7 system
 
 
 # 目录结构
-1. Bow/App.php
-2. Bow/Container.php
+1. bow/App.php
+2. bow/Container.php
 3. composer.json
