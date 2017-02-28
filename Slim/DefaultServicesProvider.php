@@ -20,6 +20,7 @@ class DefaultServicesProvider
      */
     public function register($container)
     {
+        // Laravel database
         if (!isset($container['db'])) {
             $container['db'] = function ($container) {
                 $capsule = new \Illuminate\Database\Capsule\Manager;
@@ -29,5 +30,32 @@ class DefaultServicesProvider
                 return $capsule;
             };
         }
+
+        // Encryption system
+        if ( !isset($container['encryption']) ) {
+            $container['encryption'] = function($container){
+                $config = $container->get('settings')['encryption'];
+
+                if (\Illuminate\Support\Str::startsWith($key = $config['key'], 'base64:')) {
+                    $key = base64_decode(substr($key, 7));
+                }
+
+                return new \Illuminate\Encryption\Encrypter($key, $config['cipher']);
+
+            };
+        }
+
+        // Logger
+        if ( !isset($container['logger']) ) {
+            $container['logger'] = function ($container) {
+                $settings = $container->get('settings')['logger'];
+                $logger = new \Monolog\Logger($settings['name']);
+                $logger->pushProcessor(new \Monolog\Processor\UidProcessor());
+                $logger->pushHandler(new \Monolog\Handler\StreamHandler($settings['path'], $settings['level']));
+
+                return $logger;
+            };
+        }
+
     }
 }

@@ -27,6 +27,19 @@ $settings = [
 		'collation' => 'utf8_general_ci',
 		'prefix' => 'ims_',
 		],
+
+		// Encryption settings
+        'encryption' => [
+            'key' => 'Nv7QU2Zuj9CWjuxxB2Edt3LWML53IAsF',
+            'cipher' => 'AES-256-CBC',
+        ],
+
+        // Logger settings
+        'logger' => [
+            'name' => 'eric-log',
+            'path' => __DIR__ . '/logs/app.log',
+            'level' => \Monolog\Logger::DEBUG,
+        ],
 	],
 ];
 
@@ -35,4 +48,15 @@ $container = $app->getContainer();
 
 $cache = $container->get('db');
 
+$encryption = $container->get('encryption');
+
+$test = "123";
+
+echo $encryption->encrypt($test) , "\r\n";
+
+echo $encryption->decrypt($encryption->encrypt($test)) , "\r\n";
+
+
+$logger = $container->get('logger');
+$logger->info("test");
 var_dump($cache->table('users')->get());
