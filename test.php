@@ -19,10 +19,10 @@ $settings = [
 		// ],
 		// ],
 		'driver' => 'mysql',
-		'host' => '114.115.212.17',
+		'host' => '',
 		'database' => 'we7',
 		'username' => 'root',
-		'password' => 'hushulin', //
+		'password' => '', //
 		'charset' => 'utf8',
 		'collation' => 'utf8_general_ci',
 		'prefix' => 'ims_',
