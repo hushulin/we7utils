@@ -19,8 +19,11 @@
     },
     "autoload": {
         "psr-4": {
-            "Bow\\": "bow/",
+            "Bow\\": "bow",
             "Slim\\": "Slim"
-        }
+        },
+        "files":[
+            "bow/helpers.php"
+        ]
     }
 }
