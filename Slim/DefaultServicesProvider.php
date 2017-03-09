@@ -57,5 +57,13 @@ class DefaultServicesProvider
             };
         }
 
+        // Qrcode generator
+        if ( ! isset($container['qrcode']) ) {
+            $container['qrcode'] = function ($container)
+            {
+                return new \SimpleSoftwareIO\QrCode\BaconQrCodeGenerator;
+            }
+        }
+
     }
 }
