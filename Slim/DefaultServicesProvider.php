@@ -62,7 +62,7 @@ class DefaultServicesProvider
             $container['qrcode'] = function ($container)
             {
                 return new \SimpleSoftwareIO\QrCode\BaconQrCodeGenerator;
-            }
+            };
         }
 
     }
