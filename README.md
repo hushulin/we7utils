@@ -13,6 +13,8 @@ An utils for we7 system
 
 添加一个二维码生成器
 
+后台构建体系
+
 # 目录结构
 1. bow/App.php
 2. bow/helpers.php
