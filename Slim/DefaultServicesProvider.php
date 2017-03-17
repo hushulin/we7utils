@@ -65,5 +65,13 @@ class DefaultServicesProvider
             };
         }
 
+        // Faker (fzaninotto/faker)
+        if ( ! isset($container['faker']) ) {
+            $container['faker'] = function ($container)
+            {
+                return \Faker\Factory::create();
+            };
+        }
+
     }
 }
