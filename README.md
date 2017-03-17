@@ -11,8 +11,11 @@ An utils for we7 system
 
 或许需要个加密系统 "illuminate/encryption": "^5.3",
 
+添加一个二维码生成器
+
+后台构建体系
 
 # 目录结构
 1. bow/App.php
-2. bow/Container.php
+2. bow/helpers.php
 3. composer.json
