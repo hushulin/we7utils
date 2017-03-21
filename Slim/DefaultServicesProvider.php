@@ -57,5 +57,21 @@ class DefaultServicesProvider
             };
         }
 
+        // Qrcode generator
+        if ( ! isset($container['qrcode']) ) {
+            $container['qrcode'] = function ($container)
+            {
+                return new \SimpleSoftwareIO\QrCode\BaconQrCodeGenerator;
+            };
+        }
+
+        // Faker (fzaninotto/faker)
+        if ( ! isset($container['faker']) ) {
+            $container['faker'] = function ($container)
+            {
+                return \Faker\Factory::create();
+            };
+        }
+
     }
 }
