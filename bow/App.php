@@ -119,7 +119,7 @@ class App
         }
 
         if ( ! isset($container[$identifier]) ) {
-            $container[$identifier] = function ($container) use ($class)
+            $container[$identifier] = function ($container) use ($class , $fullPath)
             {
                 require $fullPath;
                 return new $class($container);
