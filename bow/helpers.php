@@ -73,10 +73,10 @@ if ( ! function_exists('bow_build_settings') ) {
 }
 
 if ( ! function_exists('bow_template_parse') ) {
-	function bow_template_parse($from , $data = [])
+	function bow_template_parse($from , $base = '' , $data = [])
 	{
 		$dataObject = new \ArrayObject($data);
-		$view = new \Spindle\View($from , '' , $dataObject);
-		return $view;
+		$view = new \Spindle\View($from , $base , $dataObject);
+		return $view->render();
 	}
 }
