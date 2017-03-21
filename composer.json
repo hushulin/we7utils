@@ -17,7 +17,8 @@
         "illuminate/encryption": "^5.3",
         "monolog/monolog": "^1.22",
         "simplesoftwareio/simple-qrcode":"~1.5",
-        "fzaninotto/faker": "v1.6.0"
+        "fzaninotto/faker": "v1.6.0",
+        "spindle/view": "1.0.3"
     },
     "autoload": {
         "psr-4": {
