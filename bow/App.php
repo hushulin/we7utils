@@ -97,7 +97,6 @@ class App
 
     public function registerPlugins($shortPath , $fullPath)
     {
-        include $fullPath;
         $container = $this->getContainer();
 
         $identifier = 'do';
@@ -122,6 +121,7 @@ class App
         if ( ! isset($container[$identifier]) ) {
             $container[$identifier] = function ($container) use ($class)
             {
+                require $fullPath;
                 return new $class($container);
             };
         }
