@@ -46,6 +46,88 @@ class App
         return $this->container;
     }
 
+    public function registerWe7Service($dirPath)
+    {
+        $plugins = $this->collectPlugins($dirPath);
+
+        if ( count($plugins) > 0 ) {
+            foreach ($plugins as $key => $value) {
+                $this->registerPlugins($value[0] , $value[1]);
+            }
+        }
+    }
+
+    public function collectPlugins($dirPath)
+    {
+        $plugins = [];
+
+        if (!is_dir($dirPath)) {
+            return $plugins;
+        }
+
+        $it = new \RegexIterator(
+            new \RecursiveIteratorIterator(
+            new \RecursiveDirectoryIterator($dirPath, \RecursiveDirectoryIterator::FOLLOW_SYMLINKS)
+        )
+            , '/^.+\.php$/i'
+            , \RecursiveRegexIterator::GET_MATCH
+        );
+        $it->setMaxDepth(6);
+        $it->rewind();
+
+        while ($it->valid()) {
+            if (($it->getDepth() > 1) && $it->isFile()/* && (strtolower($it->getFilename()) == "plugin.php") */) {
+                // $filePath = dirname($it->getPathname());
+                // var_dump($filePath);
+                // var_dump($it->getPathname());
+                // $pluginName = basename($filePath);
+                // $vendorName = basename(dirname($filePath));
+                // $plugins[$vendorName][$pluginName] = $filePath;
+                $plugins[] = [
+                \Illuminate\Support\Str::substr($it->getPathname() , strlen($dirPath)),
+                $it->getPathname(),
+                ];
+            }
+
+            $it->next();
+        }
+
+        return $plugins;
+    }
+
+    public function registerPlugins($shortPath , $fullPath)
+    {
+        include $fullPath;
+        $container = $this->getContainer();
+
+        $identifier = 'do';
+        $class = '\Bow';
+
+        $arr_short_path = explode('/', $shortPath);
+
+        foreach ($arr_short_path as $key => $value) {
+
+            if (!$value) {
+                continue;
+            }
+
+            if ( strstr($value, '.php') ) {
+                $value = str_replace('.php', '', $value);
+            }
+
+            $identifier .= '.' . \Illuminate\Support\Str::lower($value);
+            $class .= '\\' . \Illuminate\Support\Str::ucfirst($value);
+        }
+
+        if ( ! isset($container[$identifier]) ) {
+            $container[$identifier] = function ($container) use ($class)
+            {
+                return new $class($container);
+            };
+        }
+
+    }
+
     /**
      * Calling a non-existant method on App checks to see if there's an item
      * in the container that is callable and if so, calls it.
