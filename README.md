@@ -15,6 +15,8 @@ An utils for we7 system
 
 后台构建体系
 
+New add a view template engine for php layout. (package)
+
 # 目录结构
 1. bow/App.php
 2. bow/helpers.php
