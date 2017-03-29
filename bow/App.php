@@ -84,7 +84,7 @@ class App
                 // $vendorName = basename(dirname($filePath));
                 // $plugins[$vendorName][$pluginName] = $filePath;
                 $plugins[] = [
-                \Illuminate\Support\Str::substr($it->getPathname() , strlen($dirPath)),
+                Str::substr($it->getPathname() , strlen($dirPath)),
                 $it->getPathname(),
                 ];
             }
@@ -114,8 +114,8 @@ class App
                 $value = str_replace('.php', '', $value);
             }
 
-            $identifier .= '.' . \Illuminate\Support\Str::lower($value);
-            $class .= '\\' . \Illuminate\Support\Str::ucfirst($value);
+            $identifier .= '.' . Str::lower($value);
+            $class .= '\\' . Str::ucfirst($value);
         }
 
         if ( ! isset($container[$identifier]) ) {
