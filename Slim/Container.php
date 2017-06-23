@@ -146,7 +146,7 @@ class Container extends PimpleContainer implements ContainerInterface
     {
         $trace = $exception->getTrace()[0];
 
-        return $trace['class'] === PimpleContainer::class && $trace['function'] === 'offsetGet';
+        return $trace['class'] === 'Pimple\Container' && $trace['function'] === 'offsetGet';
     }
 
     /**
