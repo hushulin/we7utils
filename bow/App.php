@@ -102,7 +102,7 @@ class App
         $identifier = 'do';
         $class = '\Bow';
 
-        $arr_short_path = explode('/', $shortPath);
+        $arr_short_path = explode(DIRECTORY_SEPARATOR, $shortPath);
 
         foreach ($arr_short_path as $key => $value) {
 
