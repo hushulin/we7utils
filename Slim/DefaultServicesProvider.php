@@ -73,5 +73,12 @@ class DefaultServicesProvider
             };
         }
 
+        // use \Crunz\Schedule;
+        if ( ! isset($container['schedule']) ) {
+            $container['schedule'] = function ($container)
+            {
+                return new \Crunz\Schedule;
+            };
+        }
     }
 }

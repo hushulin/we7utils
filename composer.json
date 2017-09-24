@@ -19,7 +19,8 @@
         "monolog/monolog": "^1.22",
         "simplesoftwareio/simple-qrcode":"~1.5",
         "fzaninotto/faker": "v1.6.0",
-        "spindle/view": "1.0.3"
+        "spindle/view": "1.0.3",
+        "lavary/crunz": "^1.4"
     },
     "autoload": {
         "psr-4": {
